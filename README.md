@@ -27,7 +27,7 @@ This project is a simple GUI application that utilizes the Shazam API to classif
 - Python 3.x
 - `shazamio` library (`pip install shazamio`)
 - `tkinter` library (usually included in Python standard library)
-- `moviepy` library (only if converting MP4 to MP3)
+- `moviepy` library (`pip install moviepy`)
 
 ## Folder Structure
 
