@@ -2,30 +2,30 @@ import os
 from moviepy.editor import *
 
 def convert_mp4_to_mp3(input_folder, output_folder):
-    # Tworzenie folderu wyjściowego, jeśli nie istnieje
+    # Creating the output folder if it doesn't exist
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
-    # Przeszukiwanie folderu wejściowego i jego podfolderów
+    # Searching through the input folder and its subfolders
     for root, dirs, files in os.walk(input_folder):
         for file in files:
             if file.endswith(".mp4"):
                 input_path = os.path.join(root, file)
                 output_path = os.path.join(output_folder, os.path.splitext(file)[0] + ".mp3")
 
-                # Konwersja pliku MP4 do MP3
+                # Converting MP4 file to MP3
                 video = VideoFileClip(input_path)
                 audio = video.audio
-                # Sprawdzamy czy istnieje ścieżka dźwiękowa
+                # Checking if audio stream exists
                 if audio is not None:
                     audio.write_audiofile(output_path)
-                    print(f"Skonwertowano: {input_path} -> {output_path}")
+                    print(f"Converted: {input_path} -> {output_path}")
                 else:
-                    print(f"Plik {input_path} nie zawiera ścieżki dźwiękowej. Pomijam konwersję.")
+                    print(f"The file {input_path} does not contain an audio stream. Skipping conversion.")
 
-# Wskazanie folderu wejściowego i wyjściowego
+# Specifying the input and output folders
 input_folder = "non-filtred"
 output_folder = "filtred"
 
-# Wywołanie funkcji konwertującej
+# Calling the conversion function
 convert_mp4_to_mp3(input_folder, output_folder)
